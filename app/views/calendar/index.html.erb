@@ -1,2 +1,3 @@
-<h1>Calendar#index</h1>
-<p>Find me in app/views/calendar/index.html.erb</p>
+<%= content_tag :div, data: { controller: "calendar"} do %>
+  <%= tag :div, data: { target: "calendar.calendar"} %>
+<% end %>
