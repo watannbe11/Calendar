@@ -11,8 +11,10 @@ class EventsTest < ApplicationSystemTestCase
   end
 
   test "creating a Event" do
-    visit events_url
-    click_on "New Event"
+    visit root_url
+    page.accept_confirm do
+      click_on 'fc-daygrid-day-number',match: :first
+    end
 
     check "All day" if @event.all_day
     fill_in "End time", with: @event.end_time
@@ -25,7 +27,7 @@ class EventsTest < ApplicationSystemTestCase
   end
 
   test "updating a Event" do
-    visit events_url
+    visit edit_event_url(@event)
     click_on "Edit", match: :first
 
     check "All day" if @event.all_day
@@ -39,11 +41,10 @@ class EventsTest < ApplicationSystemTestCase
   end
 
   test "destroying a Event" do
-    visit events_url
+    visit event_url(@event)
     page.accept_confirm do
-      click_on "Destroy", match: :first
+      click_on "delete", match: :first
     end
-
-    assert_text "Event was successfully destroyed"
+    assert_redirected_to root_path
   end
 end
