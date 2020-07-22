@@ -15,13 +15,29 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should create event" do
-    assert_difference('Event.count') do
-      post events_url, params: { event: { all_day: @event.all_day, end_time: @event.end_time, start_time: @event.start_time, title: @event.title } }
-    end
+  # test "should create event" do
+  #   assert_difference('Event.count') do
+  #     post events_url, params: { event: { all_day: @event.all_day, end_time: @event.end_time, start_time: @event.start_time, title: @event.title } }
+  #   end
 
-    assert_redirected_to event_url(Event.last)
+  #   assert_redirected_to event_url(Event.last)
+  # end
+
+  test "should get create" do
+    get events_url(@event)
+    assert_response :success
+    assert_difference 'Event.count', 1 do
+      post events_path, params: { event: {
+                              all_day: false,
+                              start_time: "2020-07-22 21:50:37",
+                              end_time: "2020-07-22 21:50:37",
+                              title: "MyString"
+                            } }
+    end
+    follow_redirect!
+    assert_response :success
   end
+
 
   test "should show event" do
     get event_url(@event)
