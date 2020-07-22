@@ -21,6 +21,10 @@ export default class extends Controller {
       navLinkDayClick: function(date, jsEvent) {
         _this.start_timeTarget.value = date
         _this.end_timeTarget.value = date
+      },
+      eventClick: function (info) {
+        info.jsEvent.preventDefault()
+        Turbolinks.visit(info.event.extendedProps.show_url)
       }
     })
     calendar.render()
