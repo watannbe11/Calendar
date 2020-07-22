@@ -51,7 +51,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
 
   test "should update event" do
     patch event_url(@event), params: { event: { all_day: @event.all_day, end_time: @event.end_time, start_time: @event.start_time, title: @event.title } }
-    assert_redirected_to event_url(@event)
+    assert_redirected_to root_path
   end
 
   test "should destroy event" do
@@ -59,6 +59,6 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
       delete event_url(@event)
     end
 
-    assert_redirected_to events_url
+    assert_redirected_to root_path
   end
 end
