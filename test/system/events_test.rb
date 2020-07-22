@@ -42,9 +42,8 @@ class EventsTest < ApplicationSystemTestCase
 
   test "destroying a Event" do
     visit event_url(@event)
-    page.accept_confirm do
-      click_on "delete", match: :first
-    end
+
+    click_on "delete", match: :first
+
     assert_redirected_to root_path
-  end
 end
